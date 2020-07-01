@@ -6,7 +6,7 @@ name: deploy
 on:
   push:
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   build:
@@ -34,6 +34,6 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: tag number
         run: echo ${{ steps.get_version.outputs.VERSION }}
-#      - name: Build with Maven
+#      - name: Deploy with Maven
 #        run: export GPG_TTY=$(tty) ./mvnw --batch-mode clean deploy -Dgpg.passphrase="${{ secrets.PASSPHRASE }}" -P release
 
